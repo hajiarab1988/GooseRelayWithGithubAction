@@ -1,4 +1,4 @@
-name: OLD_GooseRelayVPN (manual update)
+name: GooseRelayVPN (manual update)
 
 on:
   workflow_dispatch:
