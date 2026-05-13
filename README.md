@@ -27,7 +27,7 @@ In this project we are trying to test if we can use **GitHub Actions** as a ligh
 - مقدار **Bore tunnel** را کپی کنید (مثال: `http://bore.pub:34778/tunnel`).
 - این آدرس را در جای مناسب فایل **GoogleScript.gs** قرار دهید.
 - دوباره اسکریپت را **Deploy** کنید.
-- **ID دیپلویment** را کپی کنید و در فایل `client_config.json` در جای مشخص شده قرار دهید.
+- **ID دیپلویمنت** را کپی کنید و در فایل `client_config.json` در جای مشخص شده قرار دهید.
 
 ### 4. Get Tunnel Key
 
