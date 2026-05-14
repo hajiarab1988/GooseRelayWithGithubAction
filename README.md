@@ -1,27 +1,44 @@
 # GooseRelayWithGithubAction
 
-In this project we are trying to test if we can use **GitHub Actions** as a lightweight Linux VPS to run a **GooseRelayVPN** tunnel.
+در این پروژه قصد داریم بررسی کنیم که آیا می‌توان از **GitHub Actions** به‌عنوان یک سرور مجازی لینوکس سبک (Lightweight VPS) برای اجرای تونل **GooseRelayVPN** استفاده کرد یا نه.
 
-> Inspired by: [Kianmhz/GooseRelayVPN/issues/120](https://github.com/Kianmhz/GooseRelayVPN/issues/120)
+> برگرفته از: [Kianmhz/GooseRelayVPN/issues/120](https://github.com/Kianmhz/GooseRelayVPN/issues/120)
 
 ---
 
-## 📖 How to use (راهنمای استفاده)
+## ⭐ پیش نیاز: فورک کردن این مخزن
 
-### 1. Google Script Setup
+برای این‌که بتوانید از این روش استفاده کنید، ابتدا باید این مخزن را **فورک (Fork)** کنید.  
+فورک کردن یعنی یک کپی از این پروژه به حساب گیت‌هاب خودتان بسازید تا بتوانید Actionهای آن را اجرا کنید.
+
+### چگونه فورک کنیم؟
+
+1. در بالای همین صفحه، روی دکمه **Fork** کلیک کنید (سمت راست بالای صفحه).
+2. اگر از شما خواسته شد، حساب کاربری خود را انتخاب کنید (یا همان جایی که لاگین هستید).
+3. صبر کنید تا گیت‌هاب کپی پروژه را بسازد.
+4. بعد از اتمام، شما به مخزن فورک‌شده خود منتقل می‌شوید (آدرس آن چیزی شبیه `https://github.com/username/GooseRelayWithGithubAction` خواهد بود).
+5. حالا می‌توانید مراحل بعدی را در **مخزن خودتان** انجام دهید.
+
+> 🔔 **توجه:** تمام مراحل بعدی باید در **مخزن فورک‌شده خودتان** انجام شود، نه در مخزن اصلی.
+
+---
+
+## 📖 راهنمای استفاده
+
+### ۱. تنظیم Google Script
 
 - یک **اسکریپت جدید** در حساب Google Apps Script خود بسازید.
 - محتوای فایل `GoogleScript.gs` را در آن کپی کنید.
-- اسکریپت را **Deploy** کنید (فعلاً به ID و URL نیاز نداریم، ولی Google Script را باز نگه دارید – بعداً باید آدرس تونل Bore را در آن اضافه کنید).
+- اسکریپت را **Deploy** کنید (فعلاً به ID و URL نیازی نداریم، فقط Google Script را باز نگه دارید – بعداً باید آدرس تونل Bore را در آن اضافه کنید).
 
-### 2. Run GitHub Action
+### ۲. اجرای GitHub Action
 
-- در مخزن خود، به بخش **Actions** بروید.
+- در مخزن فورک‌شده خود، به بخش **Actions** بروید.
 - workflow با نام `GooseRelayVPN (manual update)` را انتخاب کنید.
 - روی **Run workflow** کلیک کنید تا اجرا شود.
 - روی **tunnel** (اکشن در حال اجرا) کلیک کنید تا لاگ‌های ترمینال را ببینید.
 
-### 3. Get Bore Tunnel Address
+### ۳. گرفتن آدرس تونل Bore
 
 - در لاگ‌ها، **فلش رو به پایین** کنار `Run GooseRelayVPN server setup (based on user script)` را باز کنید.
 - مقدار **Bore tunnel** را کپی کنید (مثال: `http://bore.pub:34778/tunnel`).
@@ -29,23 +46,23 @@ In this project we are trying to test if we can use **GitHub Actions** as a ligh
 - دوباره اسکریپت را **Deploy** کنید.
 - **ID دیپلویمنت** را کپی کنید و در فایل `client_config.json` در جای مشخص شده قرار دهید.
 
-### 4. Get Tunnel Key
+### ۴. گرفتن کلید تونل
 
 - به لاگ‌های همان Action برگردید.
 - مقدار **Tunnel Key** را کپی کنید (مثال: `797c57415d5a73ae606df4882a362b98817fdd86ecbbb15d0d0e00d2c7dcfbf3`).
 - این مقدار را در فایل `client_config.json` در جای مشخص شده قرار دهید.
 
-### 5. Client Configuration
+### ۵. تنظیمات کلاینت
 
 - فایل `client_config.json` را ذخیره کنید.
 - آن را در همان پوشه‌ای قرار دهید که فایل `goose-client.exe` (که قبلاً از [GooseRelayVPN](https://github.com/Kianmhz/GooseRelayVPN) گرفته‌اید) وجود دارد.
 
-### 6. Run the Client
+### ۶. اجرای کلاینت
 
 - یک ترمینال **CMD** باز کنید.
 - فایل `goose-client.exe` را اجرا کنید.
 
-### 7. Use with FoxyProxy (Browser)
+### ۷. استفاده با FoxyProxy (مرورگر)
 
 - افزونه **FoxyProxy** را روی **Google Chrome** نصب کنید.
 - یک پروکسی جدید از نوع **Socks5** با آدرس `127.0.0.1` و پورت `1080` بسازید.
@@ -54,18 +71,19 @@ In this project we are trying to test if we can use **GitHub Actions** as a ligh
 
 ---
 
-## ⚠️ Important Notes
+## ⚠️ نکات مهم
 
-- **Bore tunnel ناپایدار است** – تقریباً پس از **20 دقیقه یا کمتر** بسته می‌شود.
+- **تونل Bore ناپایدار است** – تقریباً پس از **۲۰ دقیقه یا کمتر** بسته می‌شود.
 - هر بار که تونل بسته شد:
   - Action گیت‌هاب را **Cancel** کنید.
   - دوباره **Run workflow** را بزنید.
   - **آدرس تونل** و **کلید تونل** جدید را کپی کنید.
   - آدرس جدید را در **Google Script** به‌روز کنید، **دوباره Deploy** کنید و **ID جدید** را در `client_config.json` جایگزین کنید.
 - **هر بار که آدرس تونل را عوض می‌کنید، باید Google Script را دوباره Deploy کنید** و ID جدید را در فایل JSON وارد کنید.
+- **حتماً مخزن را فورک کنید** در غیر این صورت نمی‌توانید اکشن را اجرا کنید.
 
 ---
 
-## 🧪 Disclaimer
+## 🧪 سلب مسئولیت
 
 > **این پروژه صرفاً جنبهٔ آموزشی دارد و به هیچ وجه یک راه‌حل مناسب برای دسترسی به اینترنت نیست.**
